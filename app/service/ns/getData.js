@@ -3,10 +3,10 @@
  */
 const axios = require("axios");
 const processDataCtrl = require("./processData");
-const {query} = require('../../utils/query');
+const {query} = require('../../../utils/query');
 const {
   LATEST_TIME
-} = require('../../utils/sql');
+} = require('../../../utils/nsSql');
 
 // 获取资源列表
 const getList = (page) => {

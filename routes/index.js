@@ -1,18 +1,22 @@
 const router = require("koa-router")();
-const spiderCtrl = require("../app/controller/spider");
+const nsSpiderCtrl = require("../app/controller/ns/spider");
+const bookSpiderCtrl = require("../app/controller/book/spider");
 
 router.get("/", async (ctx, next) => {
 	await ctx.render("index", {
-		title: "Hello NS!",
+		title: "Hello spider!",
 	});
 });
 
-router.get("/spider", async (ctx, next) => {
-    // 获取资源栏文章
-    // let query = ctx.query||{};
-    // let filePath = query.filePath||'';
-    // 获取数据
-    let res = await spiderCtrl.work();
+router.get("/ns/spider", async (ctx, next) => {
+    // 获取数据-ns
+    let res = await nsSpiderCtrl.work();
+	ctx.body = res;
+});
+
+router.get("/book/spider", async (ctx, next) => {
+    // 获取数据-book
+    let res = await bookSpiderCtrl.work();
 	ctx.body = res;
 });
 

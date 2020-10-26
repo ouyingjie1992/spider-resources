@@ -1,6 +1,6 @@
 
-const getDataCtrl = require("../service/getData");
-const insertDataCtrl = require("../service/insertData");
+const getDataCtrl = require("../../service/book/getData");
+const insertDataCtrl = require("../../service/book/insertData");
 
 async function work(filePath) {
     let res = await getDataCtrl.work();

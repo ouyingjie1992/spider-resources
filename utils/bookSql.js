@@ -4,10 +4,10 @@
 const QUERY_TABLE = (tabelName) => `SELECT * FROM ${tabelName}`;
 
 // 插入数据
-const INSERT_TABLE = (tableName, {key, val}) => `INSERT INTO ${tableName}(${key}) VALUES (${val})`;
+const INSERT_TABLE = (tableName, {key, val}) => `INSERT INTO ${tableName}(${key}) VALUES ${val}`;
 
 // 更新数据
-const UPDATE_TABLE = (tableName, {primaryKey, primaryVal}, {key, val}) => `UPATE ${tableName} SET ${key}=${val} WHERE(${primaryKey}=${primaryVal})`;
+const UPDATE_TABLE = (tableName, condition, setContent) => `UPDATE ${tableName} SET ${setContent} WHERE(${condition})`;
 
 // 删除数据
 // const DELETE_TABLE = (tabelName, {primaryKey, primaryVal}) => `DELETE FROM ${tabelName} WHERE(${primaryKey}=${primaryVal})`;
@@ -17,10 +17,14 @@ const DELETE_TABLE = (tabelName, {primaryKey, primaryVal}) => `UPATE ${tableName
 // 获取资源表中数据最新时间（publish_time）
 const LATEST_TIME = () => `SELECT publish_time FROM ns_resources_list WHERE isvalid=0 AND publish_time IS NOT NULL AND publish_time <> '' ORDER BY publish_time DESC LIMIT 1`;
 
+// 查询书架数据
+const BOOK_LIST = () => `SELECT id, name, href, lastest_chapter FROM book_list WHERE isvalid=0`;
+
 module.exports = {
     QUERY_TABLE,
     INSERT_TABLE,
     UPDATE_TABLE,
     DELETE_TABLE,
-    LATEST_TIME
+    LATEST_TIME,
+    BOOK_LIST
 };

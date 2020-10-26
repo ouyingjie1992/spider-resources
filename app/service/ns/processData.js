@@ -3,22 +3,6 @@
  */
 const cheerio = require('cheerio');
 
-/**
- * 读取路径信息
- * @param {string} path 路径
- */
-const getStat = (path) => {
-	return new Promise((resolve, reject) => {
-		fs.stat(path, (err, stats) => {
-			if (err) {
-				resolve(false);
-			} else {
-				resolve(stats);
-			}
-		});
-	});
-};
-
 // 格式化时间：[10月11日 08:40][昨天 08:40][今天 08:40]
 const initTime = (time) => {
     let hours = '';// 时分
