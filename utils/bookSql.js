@@ -1,7 +1,7 @@
 // 封装一些基本sql语句
 
 // 查询数据库表
-const QUERY_TABLE = (tabelName) => `SELECT * FROM ${tabelName}`;
+const QUERY_TABLE = (tabelName, condition, val) => `SELECT ${val?val:'*'} FROM ${tabelName} WHERE(${condition?condition:'1=1'})`;
 
 // 插入数据
 const INSERT_TABLE = (tableName, {key, val}) => `INSERT INTO ${tableName}(${key}) VALUES ${val}`;
@@ -14,9 +14,6 @@ const UPDATE_TABLE = (tableName, condition, setContent) => `UPDATE ${tableName} 
 // 删除数据-逻辑删除
 const DELETE_TABLE = (tabelName, {primaryKey, primaryVal}) => `UPATE ${tableName} SET isvalid=1 WHERE(${primaryKey}=${primaryVal})`;
 
-// 获取资源表中数据最新时间（publish_time）
-const LATEST_TIME = () => `SELECT publish_time FROM ns_resources_list WHERE isvalid=0 AND publish_time IS NOT NULL AND publish_time <> '' ORDER BY publish_time DESC LIMIT 1`;
-
 // 查询书架数据
 const BOOK_LIST = () => `SELECT id, name, href, lastest_chapter FROM book_list WHERE isvalid=0`;
 
@@ -25,6 +22,5 @@ module.exports = {
     INSERT_TABLE,
     UPDATE_TABLE,
     DELETE_TABLE,
-    LATEST_TIME,
     BOOK_LIST
 };

@@ -14,8 +14,6 @@ const query = (sql, val) => {
                 connection.query(sql, val, (err, fields) => {
                     if(err) {
                         reject(err);
-                        console.log(2222222222222222222)
-                        console.log(err)
                     } else {
                         resolve(JSON.parse(JSON.stringify(fields)));
                         connection.release();

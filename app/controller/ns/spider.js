@@ -2,7 +2,7 @@
 const getDataCtrl = require("../../service/ns/getData");
 const insertDataCtrl = require("../../service/ns/insertData");
 
-async function work(filePath) {
+async function work() {
     let res = await getDataCtrl.work();
     // 处理数据-存储数据
     res = await insertDataCtrl.work(res);
